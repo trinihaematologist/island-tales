@@ -82,4 +82,20 @@ function renderQuiz(){
 renderQuiz();
 
 document.getElementById('year').textContent=new Date().getFullYear();
-let soundOn=false;document.getElementById('soundToggle').addEventListener('click',e=>{soundOn=!soundOn;e.currentTarget.setAttribute('aria-pressed',soundOn);e.currentTarget.textContent=soundOn?'♪ Sound on':'♪ Sound';});
+
+// Accessible mobile navigation.
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+function closeMenu() {
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Open navigation menu');
+  mainNav.classList.remove('is-open');
+}
+menuToggle.addEventListener('click', () => {
+  const opening = menuToggle.getAttribute('aria-expanded') !== 'true';
+  menuToggle.setAttribute('aria-expanded', String(opening));
+  menuToggle.setAttribute('aria-label', opening ? 'Close navigation menu' : 'Open navigation menu');
+  mainNav.classList.toggle('is-open', opening);
+});
+mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
