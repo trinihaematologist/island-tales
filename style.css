@@ -194,3 +194,15 @@ body{background:#f8f7f3}
   }
   .card-art{height:230px}
 }
+
+/* Mobile navigation: visible, keyboard accessible, and easy to tap. */
+.menu-toggle{display:none;border:1.5px solid rgba(29,36,66,.2);background:#fff;border-radius:12px;padding:10px 14px;font:800 .95rem "Nunito",sans-serif;color:var(--ink);cursor:pointer}
+@media(max-width:950px){
+ .site-header{flex-wrap:wrap}
+ .menu-toggle{display:block;margin-left:auto}
+ .site-header nav{display:none;flex-basis:100%;width:100%;padding:16px 0 8px;flex-direction:column;gap:0}
+ .site-header nav.is-open{display:flex}
+ .site-header nav a{display:block;padding:14px 10px;border-top:1px solid rgba(29,36,66,.1);font-size:1rem}
+}
+@media(max-width:620px){.brand{font-size:1.08rem}.menu-toggle{padding:9px 11px}}
+:focus-visible{outline:3px solid #a44d69;outline-offset:3px}
