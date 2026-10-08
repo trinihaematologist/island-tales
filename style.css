@@ -222,3 +222,49 @@ body{background:#f8f7f3}
 .adventure-visual{width:100%;margin-bottom:25px;border-radius:20px;overflow:hidden;background:#0d261f;box-shadow:0 12px 30px rgba(0,0,0,.22)}
 .adventure-visual img{display:block;width:100%;height:auto;max-height:460px;object-fit:contain}
 @media(max-width:620px){.adventure-visual{border-radius:14px}.adventure-visual img{max-height:none}}
+
+
+/* Editorial refresh: inspired by the clarity of public-service editorial sites,
+   adapted to a distinctive illustrated Caribbean storybook. */
+:root{--cream:#faf7ef;--paper:#fffdf7;--ink:#183a35;--shadow:0 12px 32px rgba(18,47,39,.10)}
+body{background:var(--cream)}
+.site-header{background:rgba(255,253,247,.97);border-bottom:3px solid #e9b95f;padding-block:13px}
+.brand{font-family:"Baloo 2",cursive;color:#173c32;letter-spacing:-.035em}
+.brand-mark{background:#f1c96b;border-radius:50%}
+.site-header nav a{position:relative;padding:9px 0}
+.site-header nav a:after{content:"";position:absolute;left:0;right:100%;bottom:3px;height:3px;background:#b35c3c;transition:right .2s}
+.site-header nav a:hover:after,.site-header nav a:focus-visible:after{right:0}
+.hero-cinematic{min-height:min(780px,88vh);border-bottom:8px solid #e9b95f}
+.hero-cinematic .hero-copy{max-width:780px}
+.hero-cinematic h1{font-size:clamp(4rem,8.4vw,8rem);line-height:.91;letter-spacing:-.055em}
+.hero-cinematic .hero-lead{font-size:clamp(1.2rem,2.1vw,1.65rem);line-height:1.4;max-width:560px}
+.hero-cinematic .hero-intro{max-width:520px}
+.hero-cinematic .button{border-radius:5px}
+.intro-strip{position:relative;z-index:2;margin-top:-2px;border-radius:0;box-shadow:none;border-bottom:1px solid #d7d3c7;background:#fffdf7}
+.intro-strip div{padding:25px 18px}
+.intro-strip span{border-radius:4px;background:#e9c36d}
+.section{padding-block:clamp(70px,8vw,120px)}
+.section-heading{align-items:start;border-top:3px solid #173c32;padding-top:24px}
+.section-heading h2{line-height:1.05;letter-spacing:-.04em}
+.section-heading>p{font-size:1.04rem}
+.legend-grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+.legend-card{grid-column:span 4;border-radius:3px;box-shadow:none;border:1px solid #e4ddce;background:#fffdf7;transition:transform .2s,box-shadow .2s}
+.legend-card:nth-child(1),.legend-card:nth-child(2){grid-column:span 6}
+.legend-card:nth-child(1) .card-art,.legend-card:nth-child(2) .card-art{height:clamp(280px,32vw,440px)}
+.legend-card .card-copy{padding:23px 25px 27px;border-top:5px solid #d8a851}
+.legend-card:nth-child(2n) .card-copy{border-top-color:#47877a}
+.legend-card:nth-child(3n) .card-copy{border-top-color:#b66b55}
+.legend-card .card-copy h3{font-size:clamp(1.9rem,3vw,2.65rem)}
+.legend-card .open-label{display:inline-block;border-bottom:2px solid currentColor;padding-bottom:3px}
+.legend-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(18,47,39,.13)}
+.adventure-section{background:#e8eee4}
+.adventure-intro img{border-radius:3px;box-shadow:none}
+.adventure-game{border-radius:4px}
+.map-board,.map-detail,.map-points button,.culture-copy,.story-prompt,.quiz-card,.grownups{border-radius:4px}
+.story-map{background:#163e40}
+.map-board{background:linear-gradient(135deg,#22565a,#183f48)}
+.button{border-radius:5px}
+footer{border-top:7px solid #e9b95f}
+@media(max-width:850px){.legend-card,.legend-card:nth-child(1),.legend-card:nth-child(2){grid-column:span 6}.legend-card:nth-child(1) .card-art,.legend-card:nth-child(2) .card-art{height:clamp(240px,34vw,350px)}}
+@media(max-width:620px){.hero-cinematic{min-height:690px}.hero-cinematic h1{font-size:clamp(3.4rem,13vw,5.3rem)}.intro-strip{margin-inline:16px}.legend-grid{display:grid;grid-template-columns:1fr}.legend-card,.legend-card:nth-child(1),.legend-card:nth-child(2){grid-column:auto}.legend-card:nth-child(1) .card-art,.legend-card:nth-child(2) .card-art{height:clamp(270px,85vw,410px)}.section-heading{display:block}.section-heading>p{margin-top:18px}}
+@media(prefers-reduced-motion:reduce){.site-header nav a:after,.legend-card{transition:none}}
