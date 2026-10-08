@@ -110,10 +110,19 @@ const adventureScenes = {
   guardian:{chapter:'4 of 5 · The guardian',title:'Papa Bois appears',text:'From the shade steps Papa Bois, the forest guardian. In many tellings he is part man and part animal, with hooves and great speed. “The forest remembers how you treat it,” he says.',choices:[['Promise to tell your community','ending'],['Ask how to help the animals','ending']]},
   ending:{chapter:'5 of 5 · A promise',title:'The forest has a new friend',text:'Papa Bois nods. “Respect begins with noticing.” You return home ready to tell others about the litter and the abandoned net, so the community can clear them safely. Behind you, the forest grows quiet again.',choices:[]}
 };
+const adventureArtwork = {
+ entrance: ['scene-1.webp','Two children discover mysterious tracks in a moonlit forest'],
+ agouti: ['scene-2.webp','Children encounter an agouti in the rainforest'],
+ tracks: ['scene-1.webp','Mysterious footprints on a forest path'],
+ stream: ['scene-3.webp','A hidden forest stream under moonlight'],
+ guardian: ['scene-4.webp','Papa Bois meets two children in the forest'],
+ ending: ['scene-5.webp','Papa Bois shares a lesson about protecting the forest']
+};
 function renderAdventure(sceneKey){
  const scene=adventureScenes[sceneKey];
  const options=scene.choices.map(([label,next])=>'<button type="button" class="adventure-choice" data-next="'+next+'">'+label+' →</button>').join('');
- adventureGame.innerHTML='<div class="adventure-chapter">'+scene.chapter+'</div><h3 tabindex="-1">'+scene.title+'</h3><p>'+scene.text+'</p><div class="adventure-choices">'+options+'</div>'+(sceneKey==='ending'?'<button type="button" class="button primary" id="replayAdventure">Play again ↻</button>':'')+'<p class="adventure-culture">Folklore note: Papa Bois is a traditional forest guardian. This adventure and its dialogue were created for Island Tales.</p>';
+ const [art, description] = adventureArtwork[sceneKey];
+ adventureGame.innerHTML='<div class="adventure-visual"><img src="'+art+'" alt="'+description+'" decoding="async"></div><div class="adventure-chapter">'+scene.chapter+'</div><h3 tabindex="-1">'+scene.title+'</h3><p>'+scene.text+'</p><div class="adventure-choices">'+options+'</div>'+(sceneKey==='ending'?'<button type="button" class="button primary" id="replayAdventure">Play again ↻</button>':'')+'<p class="adventure-culture">Folklore note: Papa Bois is a traditional forest guardian. This adventure and its dialogue were created for Island Tales.</p>';
  adventureGame.querySelectorAll('[data-next]').forEach(button=>button.addEventListener('click',()=>renderAdventure(button.dataset.next)));
  const replay=document.getElementById('replayAdventure');if(replay)replay.addEventListener('click',()=>renderAdventure('entrance'));
  adventureGame.querySelector('h3').focus({preventScroll:true});
