@@ -99,3 +99,25 @@ menuToggle.addEventListener('click', () => {
 });
 mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+
+// Original branching mini-adventure. No accounts, tracking or data collection.
+const adventureGame = document.getElementById('adventureGame');
+const adventureScenes = {
+  entrance: {chapter:'1 of 5 · The forest edge',title:'A whisper in the leaves',text:'At dusk, you hear a frightened agouti rustling beside a forest path. Farther away, a branch snaps. Which way will you go?',choices:[['Help the agouti','agouti'],['Follow the snapping branch','tracks']]},
+  agouti:{chapter:'2 of 5 · A small friend',title:'The agouti speaks with its feet',text:'You gently move aside a fallen branch. The agouti scampers towards a stream, then stops as though waiting for you.',choices:[['Follow at a distance','stream'],['Look for signs of danger','tracks']]},
+  tracks:{chapter:'2 of 5 · Strange footprints',title:'The trail splits',text:'You find hoofprints beside human footprints. A hunter has left a tangled net between two trees. No animal is caught, but the net could hurt one.',choices:[['Leave the net and find an adult','stream'],['Look for the forest guardian','guardian']]},
+  stream:{chapter:'3 of 5 · The hidden stream',title:'Something is wrong with the water',text:'At the stream, you spot litter caught in the roots. A deep voice calls from the trees: “What do you see?”',choices:[['Tell the voice about the litter','guardian'],['Ask who is speaking','guardian']]},
+  guardian:{chapter:'4 of 5 · The guardian',title:'Papa Bois appears',text:'From the shade steps Papa Bois, the forest guardian. In many tellings he is part man and part animal, with hooves and great speed. “The forest remembers how you treat it,” he says.',choices:[['Promise to tell your community','ending'],['Ask how to help the animals','ending']]},
+  ending:{chapter:'5 of 5 · A promise',title:'The forest has a new friend',text:'Papa Bois nods. “Respect begins with noticing.” You return home ready to tell others about the litter and the abandoned net, so the community can clear them safely. Behind you, the forest grows quiet again.',choices:[]}
+};
+function renderAdventure(sceneKey){
+ const scene=adventureScenes[sceneKey];
+ const options=scene.choices.map(([label,next])=>'<button type="button" class="adventure-choice" data-next="'+next+'">'+label+' →</button>').join('');
+ adventureGame.innerHTML='<div class="adventure-chapter">'+scene.chapter+'</div><h3 tabindex="-1">'+scene.title+'</h3><p>'+scene.text+'</p><div class="adventure-choices">'+options+'</div>'+(sceneKey==='ending'?'<button type="button" class="button primary" id="replayAdventure">Play again ↻</button>':'')+'<p class="adventure-culture">Folklore note: Papa Bois is a traditional forest guardian. This adventure and its dialogue were created for Island Tales.</p>';
+ adventureGame.querySelectorAll('[data-next]').forEach(button=>button.addEventListener('click',()=>renderAdventure(button.dataset.next)));
+ const replay=document.getElementById('replayAdventure');if(replay)replay.addEventListener('click',()=>renderAdventure('entrance'));
+ adventureGame.querySelector('h3').focus({preventScroll:true});
+}
+document.getElementById('startAdventure').addEventListener('click',()=>{
+ adventureGame.hidden=false;renderAdventure('entrance');adventureGame.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});
+});
